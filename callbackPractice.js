@@ -1,16 +1,16 @@
 /* In this repo your job is to write functions to make each function call work properly.
-Below is a sample problem 
+Below is a sample problem
 
   //code here for sayHi
 
    sayHi('Hi Katie', function(thingToSay){
       alert(thingToSay);
    });
-   
 
-and what you should write is the sayHi function that makes the code above work, 
-    
-    
+
+and what you should write is the sayHi function that makes the code above work,
+
+
    var sayHi = function(str, cb){
     cb(str);
    }
@@ -18,14 +18,16 @@ and what you should write is the sayHi function that makes the code above work,
    sayHi('Hi Katie', function(thingToSay){
       alert(thingToSay); //should alert ('Hi Katie')'
    });
-    
-    
+
+
 */
 
 
 
-  //Code Here for first
-  
+function first(array, callback) {
+  return callback(array[0])
+}
+
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -36,10 +38,12 @@ first(names, function(firstName){
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
+function last(array, callback) {
+  return callback(array[array.length - 1])
+}
 
 
 
-  //Code Here for last
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -47,12 +51,11 @@ last(names, function(lastName){
 
 
 
-
-
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
-
-
+function multiply(num1, num2, callback) {
+  return callback(num1 * num2)
+}
 
 
 
@@ -73,6 +76,15 @@ multiply(4, 3, function(answer){
 
 
   //Code Here for contains
+  function contains(array, name, callback) {
+    for (var i = 0; i < array.length; i++) {
+      if(array[i] === name) {
+        return callback(true);
+      }
+    }
+    return callback(false);
+  }
+
 
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -88,7 +100,17 @@ contains(names, 'Colt', function(result){
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
-
+function uniq(array, callback) {
+  for (var i = 0; i < array.length; i++) {
+    for (var j = 0; j < array.length; j++) {
+      if (array[j] === array[i]) {
+        array.splice(i, 1);
+      }
+      break;
+    }
+  }
+  return callback();
+}
 
 
     //Code Here for uniq
@@ -146,5 +168,5 @@ var users = [
 ];
 
 getUserById(users, '16t', function(user){
-  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address); 
+  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address);
 });
